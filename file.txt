@@ -1,0 +1,15 @@
+// function formatText(text) {
+//   const paragraphs = text.split('\n\n');
+//   const formattedText = paragraphs.map(paragraph => `<p>${paragraph}</p>`).join('');
+  
+//   return formattedText;
+// }
+
+function formatText(text) {
+    text = text.replace(/\*/g, ' ');
+  
+    const paragraphs = text.split('\n\n');
+    const formattedText = paragraphs.map(paragraph => `<p>${paragraph}</p>`).join('');
+    
+    return formattedText;
+}
