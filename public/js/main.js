@@ -47,4 +47,3 @@ function formatText(text) {
     
     return formattedText;
 }
-  
