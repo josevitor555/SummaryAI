@@ -33,7 +33,7 @@
   margin-bottom: 10px;
 }
 
-.upload-label {
+.container header .upload-label {
   font-size: 1.6rem;
   color: #F7F7F7;
   cursor: pointer;
@@ -42,10 +42,32 @@
   background: #24242A;
 }
 
-.upload-icon {
+.container header .upload-icon {
   font-size: 2rem;
   color: #30323E;
   cursor: pointer;
+}
+
+.container header .icons-area {
+  height: auto;
+  background: #24242A;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 20px;
+}
+
+.container header .icons-area i {
+  font-size: 1rem;
+  color: #FFFFFF;
+  opacity: .8;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.container header .icons-area i:hover {
+  opacity: 1;
 }
 
 .container .content {
@@ -55,7 +77,7 @@
   background: #FFFFFF;
 }
 
-.container .content h1 {
+.container .content #title {
   width: 100%;
   padding: 10px;
   color: #FFFFFF;

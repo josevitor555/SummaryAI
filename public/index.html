@@ -7,6 +7,8 @@
   <title> SummaryAI </title>
   
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
@@ -15,22 +17,20 @@
     <header>
       <label for="txtFile" class="upload-label" id="uploadLabel"> Upload File </label>
       <input type="file" id="txtFile" accept=".txt" style="display: none;">
-      <svg class="svg-icon upload-icon" width="24" viewBox="0 0 24 24" height="24" fill="none" onclick="document.getElementById('txtFile').click();">
-        <g stroke-width="2" stroke-linecap="round" stroke="#2D2E36" fill-rule="evenodd" clip-rule="evenodd">
-          <path d="m3 7h17c.5523 0 1 .44772 1 1v11c0 .5523-.4477 1-1 1h-16c-.55228 0-1-.4477-1-1z"></path>
-          <path d="m3 4.5c0-.27614.22386-.5.5-.5h6.29289c.13261 0 .25981.05268.35351.14645l2.8536 2.85355h-10z"></path>
-        </g>
-      </svg>
+      <div class="icons-area">
+        <i class="fa-solid fa-file" onclick="document.getElementById('txtFile').click();"></i>
+        <i class="fa-solid fa-clock"></i>
+      </div>
     </header>
     <div class="content">
-      <h1 id="title">
+      <div id="title">
         SummaryAI
         <section class="dots-container" style="display: none;">
           <div class="dot"></div>
           <div class="dot"></div>
           <div class="dot"></div>
         </section>        
-      </h1>
+      </div>
       <div id="content-summary"> Empty Content </div>
     </div>
   </div>
