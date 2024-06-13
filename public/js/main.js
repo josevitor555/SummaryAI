@@ -51,7 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function formatText(text) {
-    const paragraphs = text.split('\n\n');
+    const cleanedText = text.replace(/\*/g, ''); // Remove all asterisks
+    const paragraphs = cleanedText.split('\n\n');
     const formattedText = paragraphs.map(paragraph => `<p>${paragraph}</p>`).join('');
     return formattedText;
 }
