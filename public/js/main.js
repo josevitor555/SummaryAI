@@ -6,9 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const copyIcon = document.getElementById('copyIcon');
     const audioIcon = document.getElementById('audioIcon');
 
-    contentSummaryElem.textContent = 'Empty Content. Upload your .txt file for the AI to summarize it.';
     dotsContainer.style.display = 'none';
-
     fileInput.addEventListener('change', async (event) => {
         const file = event.target.files[0];
         if (file) {
