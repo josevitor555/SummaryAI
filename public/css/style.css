@@ -205,17 +205,8 @@
   display: block;
 }
 
-.container .content #title .buttons-container .copy:hover,
-.copy:focus {
-  background-color: var(--button-hover-bg);
-}
-
 .container .content #title .buttons-container .copy:active {
   outline: var(--button-outline-width) solid var(--button-outline-color);
-}
-
-.container .content #title .buttons-container .copy:hover svg {
-  color: var(--button-hover-text-color);
 }
 
 .container .content #title .buttons-container .button {
@@ -224,13 +215,11 @@
   width: var(--button-diameter);
   height: var(--button-diameter);
   border-radius: var(--button-border-radius);
-  background-color: var(--button-bg);
-  color: var(--button-text-color);
   outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(44, 44, 44);
+  background: #F7F7F7;
   border-radius: 50%;
   cursor: pointer;
   transition-duration: .3s;
@@ -239,32 +228,15 @@
 }
 
 .container .content #title .buttons-container .audio {
-  width: 18px;
+  width: 16px;
 }
 
 .container .content #title .buttons-container .audio path {
-  fill: white;
-}
-
-.container .content #title .buttons-container .button:hover {
-  background-color: rgb(56, 56, 56);
+  fill: #353434;
 }
 
 .container .content #title .buttons-container .button:active {
   transform: scale(0.8);
-}
-
-.container .content #tss-playAudio {
-  width: 100%;
-  padding: 10px;
-  color: #FFFFFF;
-  font-size: 1.6rem;
-  background: #2D2E36;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
 }
 
 .container .content #content-summary {

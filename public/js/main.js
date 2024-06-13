@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadLabel = document.getElementById('uploadLabel');
     const dotsContainer = document.querySelector('.dots-container');
     const copyIcon = document.getElementById('copyIcon');
+    const audioIcon = document.getElementById('audioIcon');
 
     contentSummaryElem.textContent = 'Empty Content. Upload your .txt file for the AI to summarize it.';
     dotsContainer.style.display = 'none';
@@ -14,13 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
             uploadLabel.textContent = file.name;
             dotsContainer.style.display = 'flex';
             copyIcon.style.display = 'none';
+            audioIcon.style.display = 'none';
 
             const formData = new FormData();
             formData.append('file', file);
 
             try {
                 const response = await fetch('/summarize', { method: 'POST', body: formData });
-
                 dotsContainer.style.display = 'none';
 
                 if (response.ok) {
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const formattedSummary = formatText(summary);
                     contentSummaryElem.innerHTML = formattedSummary;
                     copyIcon.style.display = 'block';
+                    audioIcon.style.display = 'block';
                 } else {
                     const errorText = await response.text();
                     contentSummaryElem.textContent = `Error: ${errorText}`;
@@ -47,6 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }).catch(err => {
             console.error(`Error copying to clipboard: ${err}`);
         });
+    });
+
+    audioIcon.addEventListener('click', () => {
+        const summaryText = contentSummaryElem.innerText;
+        const utterance = new SpeechSynthesisUtterance(summaryText);
+        speechSynthesis.speak(utterance);
+    });
+
+    window.addEventListener('beforeunload', () => {
+        speechSynthesis.cancel();
     });
 });
 

@@ -1,7 +1,7 @@
 :root {
-  --button-bg: #353434;
-  --button-hover-bg: #464646;
-  --button-text-color: #CCCCCC;
+  --button-bg: #ffffff;
+  /* --button-hover-bg: #CCCCCC; */
+  --button-text-color: #353434;
   --button-hover-text-color: #ffffff;
   --button-border-radius: 10px;
   --button-diameter: 36px;
