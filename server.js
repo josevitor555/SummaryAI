@@ -10,7 +10,7 @@ const apiKey = process.env.API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-pro",
+    model: "gemini-1.5-flash",
 });
 
 const generationConfig = {
@@ -44,8 +44,7 @@ app.post('/summarize', upload.single('file'), async (req, res) => {
 
     try {
         const content = await fs.readFile(filePath, 'utf-8');
-        const prompt = `Resuma o seguinte conteúdo: \n\n${content}`;
-
+        const prompt = `Resume o seguinte conteúdo: \n\n${content}`;
         const result = await model.generateContent(prompt, generationConfig);
         const responseAI = await result.response;
         const text = await responseAI.text();
@@ -65,5 +64,5 @@ app.post('/summarize', upload.single('file'), async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Running on ${PORT} port`);
+    console.log(`Running on port ${PORT}`);
 });

@@ -16,7 +16,6 @@
   height: auto;
   background: #F7F7F7;
   padding: 10px;
-  overflow: hidden;
   border-radius: 6px;
 }
 
@@ -33,41 +32,19 @@
   margin-bottom: 10px;
 }
 
-.container header .upload-label {
+.upload-label {
   font-size: 1.6rem;
   color: #F7F7F7;
   cursor: pointer;
   padding: 8px;
-  border-radius: 6px;
+  border-radius: 10px;
   background: #24242A;
 }
 
-.container header .upload-icon {
+.upload-icon {
   font-size: 2rem;
   color: #30323E;
   cursor: pointer;
-}
-
-.container header .icons-area {
-  height: auto;
-  background: #24242A;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 10px 20px;
-}
-
-.container header .icons-area i {
-  font-size: 1rem;
-  color: #FFFFFF;
-  opacity: .8;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.container header .icons-area i:hover {
-  opacity: 1;
 }
 
 .container .content {
@@ -91,11 +68,11 @@
 }
 
 .dots-container {
-  display: flex;
+  display: none;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   height: 100%;
-  width: auto;
+  width: 100%;
 }
 
 .dot {
@@ -143,6 +120,114 @@
   }
 }
 
+.copy {
+  --button-bg: #353434;
+  --button-hover-bg: #464646;
+  --button-text-color: #CCCCCC;
+  --button-hover-text-color: #ffffff;
+  --button-border-radius: 10px;
+  --button-diameter: 36px;
+  --button-outline-width: 1px;
+  --button-outline-color: rgb(141, 141, 141);
+  --tooltip-bg: #353434;
+  --toolptip-border-radius: 4px;
+  --tooltip-font-size: 1.2rem;
+  --tootip-text-color: #fafafa;
+  --tooltip-padding-x: 7px;
+  --tooltip-padding-y: 7px;
+  --tooltip-offset: 8px;
+}
+
+.copy {
+  box-sizing: border-box;
+  width: var(--button-diameter);
+  height: var(--button-diameter);
+  border-radius: var(--button-border-radius);
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+}
+
+.tooltip {
+  position: absolute;
+  opacity: 0;
+  visibility: 0;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font: var(--tooltip-font-size) var(--tooltip-font-family);
+  color: var(--tootip-text-color);
+  background: var(--tooltip-bg);
+  padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
+  border-radius: var(--toolptip-border-radius);
+  pointer-events: none;
+  transition: all var(--tooltip-transition-duration) cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.tooltip::before {
+  content: attr(data-text-initial);
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--tooltip-padding-y) / 2 * -1);
+  width: var(--tooltip-padding-y);
+  height: var(--tooltip-padding-y);
+  background: inherit;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  z-index: -999;
+  pointer-events: none;
+}
+
+.copy svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkmark {
+  display: none;
+}
+
+.copy:hover .tooltip,
+.copy:focus:not(:focus-visible) .tooltip {
+  opacity: 1;
+  visibility: visible;
+  top: calc((100% + var(--tooltip-offset)) * -1);
+}
+
+.copy:focus:not(:focus-visible) .tooltip::before {
+  content: attr(data-text-end);
+}
+
+.copy:focus:not(:focus-visible) .clipboard {
+  display: none;
+}
+
+.copy:focus:not(:focus-visible) .checkmark {
+  display: block;
+}
+
+.copy:hover,
+.copy:focus {
+  background-color: var(--button-hover-bg);
+}
+
+.copy:active {
+  outline: var(--button-outline-width) solid var(--button-outline-color);
+}
+
+.copy:hover svg {
+  color: var(--button-hover-text-color);
+}
+
 .container .content #content-summary {
   width: 100%;
   max-height: 300px;
@@ -163,6 +248,7 @@
   border: 0px none #FFFFFF;
   border-radius: 8px;
 }
+
 .container .content #content-summary::-webkit-scrollbar-thumb:hover {
   background: #FFFFFF;
 }
@@ -179,6 +265,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e8e9f1;
+  background: #DADBE3;
   height: 100vh;
 }
