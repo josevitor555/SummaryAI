@@ -23,11 +23,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 dotsContainer.style.display = 'none';
 
                 if (response.ok) {
-                    const summary = await response.text();
+                    const data = await response.json();
+                    const { summary, audioUrl } = data;
                     const formattedSummary = formatText(summary);
                     contentSummaryElem.innerHTML = formattedSummary;
                     copyIcon.style.display = 'block';
                     audioIcon.style.display = 'block';
+
+                    audioIcon.addEventListener('click', async () => {
+                        const audioResponse = await fetch(audioUrl);
+                        if (audioResponse.ok) {
+                            const blob = await audioResponse.blob();
+                            const audio = new Audio(URL.createObjectURL(blob));
+                            audio.play();
+                        } else {
+                            const errorText = await audioResponse.text();
+                            console.error(`Error: ${errorText}`);
+                        }
+                    });
                 } else {
                     const errorText = await response.text();
                     contentSummaryElem.textContent = `Error: ${errorText}`;
@@ -48,21 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error(`Error copying to clipboard: ${err}`);
         });
     });
-
-    audioIcon.addEventListener('click', () => {
-        const summaryText = contentSummaryElem.innerText;
-        const utterance = new SpeechSynthesisUtterance(summaryText);
-        speechSynthesis.speak(utterance);
-    });
-
-    window.addEventListener('beforeunload', () => {
-        speechSynthesis.cancel();
-    });
 });
 
 function formatText(text) {
     const cleanedText = text.replace(/\*/g, ''); // Remove all asterisks
     const paragraphs = cleanedText.split('\n\n');
-    const formattedText = paragraphs.map(paragraph => `<p>${paragraph}</p>`).join('');
+    const formattedText = paragraphs.map(paragraph => `<p style="text-align: justify;">${paragraph}</p>`).join('');
     return formattedText;
 }
