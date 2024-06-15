@@ -5,8 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const dotsContainer = document.querySelector('.dots-container');
     const copyIcon = document.getElementById('copyIcon');
     const audioIcon = document.getElementById('audioIcon');
+    const loader = document.querySelector('.loader');
 
     dotsContainer.style.display = 'none';
+    loader.style.display = 'none';
+
     fileInput.addEventListener('change', async (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -31,14 +34,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     audioIcon.style.display = 'block';
 
                     audioIcon.addEventListener('click', async () => {
-                        const audioResponse = await fetch(audioUrl);
-                        if (audioResponse.ok) {
-                            const blob = await audioResponse.blob();
-                            const audio = new Audio(URL.createObjectURL(blob));
-                            audio.play();
-                        } else {
-                            const errorText = await audioResponse.text();
-                            console.error(`Error: ${errorText}`);
+                        loader.style.display = 'flex';
+                        try {
+                            const audioResponse = await fetch(audioUrl);
+                            if (audioResponse.ok) {
+                                const blob = await audioResponse.blob();
+                                const audio = new Audio(URL.createObjectURL(blob));
+                                audio.play();
+                                audio.addEventListener('ended', () => {
+                                    loader.style.display = 'none';
+                                });
+                            } else {
+                                const errorText = await audioResponse.text();
+                                console.error(`Error: ${errorText}`);
+                                loader.style.display = 'none';
+                            }
+                        } catch (error) {
+                            console.error('Error:', error);
+                            loader.style.display = 'none';
                         }
                     });
                 } else {

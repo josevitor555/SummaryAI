@@ -6,7 +6,7 @@ import multer from 'multer';
 import fs from 'fs/promises';
 import path from 'path';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { ElevenLabsClient, play } from "elevenlabs";
+import { ElevenLabsClient } from "elevenlabs";
 
 const apiKey = process.env.GOOGLE_API_KEY;
 const elevenLabsApiKey = process.env.ELEVENLABS_API_KEY;
@@ -53,7 +53,7 @@ app.post('/summarize', upload.single('file'), async (req, res) => {
         const summary = await responseAI.text();
 
         const audio = await elevenlabs.generate({
-            voice: "Nicole",
+            voice: "Serena",
             text: summary,
             model_id: "eleven_multilingual_v2"
         });
