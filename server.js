@@ -15,7 +15,7 @@ const genAI = new GoogleGenerativeAI(apiKey);
 const elevenlabs = new ElevenLabsClient({ apiKey: elevenLabsApiKey });
 
 const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-flash",
+    model: "your_model_generation_google",
 });
 
 const generationConfig = {
@@ -46,7 +46,7 @@ app.post('/summarize', upload.single('file'), async (req, res) => {
 
     try {
         const content = await fs.readFile(filePath, 'utf-8');
-        const prompt = `Resume o seguinte conteúdo: \n\n${content}`;
+        const prompt = `Summary the content: \n\n${content}`;
         
         const result = await model.generateContent(prompt, generationConfig);
         const responseAI = await result.response;
@@ -55,7 +55,7 @@ app.post('/summarize', upload.single('file'), async (req, res) => {
         const audio = await elevenlabs.generate({
             voice: "Serena",
             text: summary,
-            model_id: "eleven_multilingual_v2"
+            model_id: "your_eleven_labs_model_id"
         });
 
         await fs.writeFile(audioFilePath, audio);
