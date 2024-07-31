@@ -32,7 +32,7 @@
   margin-bottom: 10px;
 }
 
-.container header .loader .stroke {
+/* .container header .loader .stroke {
   position: relative;
   display: block;
   background: #30323E;
@@ -90,7 +90,7 @@
 
 .container header .loader .stroke:nth-child(7) {
   animation-delay: 0s;
-}
+} */
 
 .upload-label {
   font-size: 1.6rem;
